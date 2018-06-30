@@ -15,5 +15,7 @@ I have used Open CV implementation of different algorithms for feature extractio
 	* This n can be 128, 256 or 512 bits (OpenCV has default value of 32 bytes = 256 bits)
 	* Comparing strings can be done using the Hamming distance, which is very efficient to compute (instead of the L2 norm as is usually done)
 
-	Different approaches to choosing the test locations (n = 128 bits)
-	![Test Locations BRIEF](http://url/to/img.png)
+<p align="center">
+<img src="https://i.imgur.com/fo3ZxPJ.png">
+</p>
+<p align="center">Different approaches to choosing the test locations (n = 128 bits)</p>
