@@ -3,7 +3,7 @@ import cv2
 from matplotlib import pyplot as plt
 
 img1 = cv2.imread('5.jpg',0)          # queryImage
-img2 = cv2.imread('data/5.jpg',0) # trainImage
+img2 = cv2.imread('data/3.jpg',0) # trainImage
 
 # Initiate SIFT detector
 sift = cv2.xfeatures2d.SIFT_create()
@@ -19,7 +19,7 @@ matches = bf.knnMatch(des1,des2, k=2)
 # Apply ratio test
 good = []
 for m,n in matches:
-    if m.distance < 0.75*n.distance:
+    if m.distance < 0.60*n.distance:
         good.append([m])
 
 # cv2.drawMatchesKnn expects list of lists as matches.
