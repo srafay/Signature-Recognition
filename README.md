@@ -18,4 +18,28 @@ I have used Open CV implementation of different algorithms for feature extractio
 <p align="center">
 <img src="https://i.imgur.com/fo3ZxPJ.png">
 </p>
-<p align="center">Different approaches to choosing the test locations (n = 128 bits)</p>
+<p align="center"><sup><sub>Image taken from original research paper</sub></sup></p>
+<p align="center">Fig: Different approaches to choosing the test locations (n = 128 bits)</p>
+
+* More details can be found in this Research paper [Binary Robust Independent Elementary Features (BRIEF)](https://www.cs.ubc.ca/~lowe/525/papers/calonder_eccv10.pdf)
+
+2. **Oriented FAST and Rotated BRIEF (ORB)**
+	* SIRF and SURF are patented and you need to pay for their usage
+	* ORB is an efficient alternative to SIFT or SURF (as the title of the paper suggests)
+	* ORB uses FAST keypoint detectors
+		* Keypoints are the interest points, which decscribe what is interesting or stands out in the image. 
+		* Keypoints are important because no matter how the image changes (rotates, expands/shrinks, distorted etc), the keypoints in the original and modified image should be the same.
+		* When finding the keypoints in the modified image, the orientation of the keypoints might be changed.
+		* To find the orientation of keypoints, ORB computes the intensity weighted centroid of the patch with located corner at center 
+		* The direction of the vector from this corner point to centroid gives the orientation
+		* The equations and more detailed information can be found in the heading **3.2. Orientation by Intensity Centroid** of the paper
+	* ORB uses BRIEF descriptors
+		* Descriptors are how you describe these keypoints
+		* but we know that BRIEF works poorly with rotated images
+		* so what ORB does is to “steer” BRIEF according to the orientation of keypoints
+		* More information about steering the BRIEF can be found in the heading **4.1. Efficient Rotation of the BRIEF Operator** of the paper
+	* For descriptors matching, multi probe LSH (Locality Sensitive Hashing) is used instead of traditional LSH
+		* LSH is used for approximate similarity search
+		* LSH hashes input items so that similar items map to the same “buckets” with high probability (the number of buckets being much smaller than the universe of possible input items)
+		* The problem is the requirement for a large number of hash tables in order to achieve good search quality
+		* Thus it intelligently probes multiple buckets that are likely to contain query results in a hash table
