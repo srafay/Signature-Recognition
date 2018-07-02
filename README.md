@@ -19,7 +19,7 @@ I have used Open CV implementation of different algorithms for feature extractio
 <img src="https://i.imgur.com/fo3ZxPJ.png">
 </p>
 <p align="center"><sup><sub>Image taken from original research paper</sub></sup></p>
-<p align="center">Fig: Different approaches to choosing the test locations (n = 128 bits)</p>
+<p align="center">Fig: Different approaches on choosing the test locations (n = 128 bits)</p>
 
 * More details can be found in this Research paper [Binary Robust Independent Elementary Features (BRIEF)](https://www.cs.ubc.ca/~lowe/525/papers/calonder_eccv10.pdf)
 
@@ -43,3 +43,13 @@ I have used Open CV implementation of different algorithms for feature extractio
 		* LSH hashes input items so that similar items map to the same “buckets” with high probability (the number of buckets being much smaller than the universe of possible input items)
 		* The problem is the requirement for a large number of hash tables in order to achieve good search quality
 		* Thus it intelligently probes multiple buckets that are likely to contain query results in a hash table
+		* Multi-probe LSH uses less query time and 5 to 8 times fewer number of hash tables
+		* Thus it is both space and time efficient compared to traditional LSH
+		
+<p align="center">
+<img src="https://i.imgur.com/Ol73NDg.jpg">
+</p>
+<p align="center"><sup><sub>Image taken from <a href="http://www.vlfeat.org/overview/sift.html">VLFeat Toolbox Tutorial</a></sub></sup></p>
+<p align="center">Fig: Scale and Orientation of Keypoints</p>
+
+* More details can be found in this Research paper [ORB: An efficient alternative to SIFT or SURF](http://www.willowgarage.com/sites/default/files/orb_final.pdf)
