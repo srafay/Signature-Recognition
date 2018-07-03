@@ -71,23 +71,12 @@ I have used Open CV implementation of different algorithms for feature extractio
 		* Provides local features (computation on different patches of the image instead of Global features which generalizes the whole image)
 		* We can get many features even for smaller objects
 		* Efficient (can have real-time implementation)
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	* Extracting Keypoints
+		* Scale space peak selection
+			* Potential locations for finding features
+		* Key point localization
+			* Accurately locating the feature key points
+		* Orientation Assignment
+			* Assigning orientation to the key points
+		* Key point descriptor
+			* Describing the key point as a high dimensional vector
