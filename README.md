@@ -54,11 +54,12 @@ I have used Open CV implementation of different algorithms for feature extractio
 
 * More details can be found in this Research paper [ORB: An efficient alternative to SIFT or SURF](http://www.willowgarage.com/sites/default/files/orb_final.pdf)
 
-2. **Scale Invariant Feature Transform (SIFT)**
+3. **Scale Invariant Feature Transform (SIFT)**
 	* Why SIFT
 		* Some keypoint detectors are rotation invariant
 		* But they are not scale invariant (example is Harris Corner & Edge detector)
 		* Thus SIFT aims to provide scale invariant keypoint detection
+		
 	* Goals
 		* Extracting distinct invariant features
 			* to correctly match against a large database of features from many images
@@ -67,10 +68,12 @@ I have used Open CV implementation of different algorithms for feature extractio
 			* distortion
 			* orientation
 			* noise
+			
 	* Advantages
 		* Provides local features (computation on different patches of the image instead of Global features which generalizes the whole image)
 		* We can get many features even for smaller objects
 		* Efficient (can have real-time implementation)
+		
 	* Extracting Keypoints
 		* Scale space peak selection
 			* Potential locations for finding features
@@ -80,3 +83,17 @@ I have used Open CV implementation of different algorithms for feature extractio
 			* Assigning orientation to the key points
 		* Key point descriptor
 			* Describing the key point as a high dimensional vector
+			
+	* Extrema Detection
+		* For finding out the edges, we apply Gaussian filter (or Gaussian Smoothing) to the image as it reduces noise and then edges can be easily detected
+		* For that, we need to know the value of sigma (width of the mask)
+		* Low sigma values give small corner edges while high sigma values fits well for larger corners
+			* <p align="center"><img src="https://i.imgur.com/eulfO3m.png"></p>
+		* SIFT follows [Scale Space (Witkin, IJCAI 1983)](http://ijcai.org/Proceedings/83-2/Papers/091.pdf) which suggests to apply whole spectrum of scales
+		* Now with these different images of different Gaussian blurs (values of sigma), we need to find Laplacian of Gaussian (LoG) which basically acts as a filter to find areas of rapid change (edges) in images.
+		* Instead of LoG which is costly, we subtract one image from another and it's called Difference of Gaussians (approximation of LoG) - DoG
+			* <p align="center"><img src="https://i.imgur.com/50NX2cP.jpg"></p>
+		* For finding the keypoints (interest points), we find the local extrema (where the value of the pixel is max or min)
+		* For that, one pixel in an image is compared with its 8 neighbours as well as 9 pixels in next scale and 9 pixels in previous scales
+			* <p align="center"><img src="https://i.imgur.com/s7OSfI1.jpg"></p>
+		* If it is a local extrema, it is a potential keypoint
