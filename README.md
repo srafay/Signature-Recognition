@@ -53,3 +53,41 @@ I have used Open CV implementation of different algorithms for feature extractio
 <p align="center">Fig: Scale and Orientation of Keypoints</p>
 
 * More details can be found in this Research paper [ORB: An efficient alternative to SIFT or SURF](http://www.willowgarage.com/sites/default/files/orb_final.pdf)
+
+2. **Scale Invariant Feature Transform (SIFT)**
+	* Why SIFT
+		* Some keypoint detectors are rotation invariant
+		* But they are not scale invariant (example is Harris Corner & Edge detector)
+		* Thus SIFT aims to provide scale invariant keypoint detection
+	* Goals
+		* Extracting distinct invariant features
+			* to correctly match against a large database of features from many images
+		* Invariance to image scaling and rotation
+		* Robustness to
+			* distortion
+			* orientation
+			* noise
+	* Advantages
+		* Provides local features (computation on different patches of the image instead of Global features which generalizes the whole image)
+		* We can get many features even for smaller objects
+		* Efficient (can have real-time implementation)
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
