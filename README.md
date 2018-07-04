@@ -97,3 +97,27 @@ I have used Open CV implementation of different algorithms for feature extractio
 		* For that, one pixel in an image is compared with its 8 neighbours as well as 9 pixels in next scale and 9 pixels in previous scales
 			* <p align="center"><img src="https://i.imgur.com/s7OSfI1.jpg"></p>
 		* If it is a local extrema, it is a potential keypoint
+		
+	* Keypoint Localization
+		* Once potential keypoints locations are found, they have to be refined to get more accurate results
+		* Taylor series expansion is used to get more accurate location of extrema
+		* The intensity of this extrema is compared with the threshold value and the location is rejected if it is less than th
+		* Thus many weak and false points are removed in this process
+		
+	* Orientation assignment
+		* Orientation is assigned to each keypoint to achieve invariance to image rotation
+	
+	* Keypoint descriptor
+		* A 16x16 neighbourhood around the keypoint is taken
+		* It is divided into 16 subblocks (4x4), and 8 bin orientation histogram is created for each subblock
+		* Bin is intensity range representation of the pixels in simpler terms
+		* So a total of 128 bin values are available
+		* It is represented as a vector to form keypoint descriptor
+		
+	* Keypoint matching
+		* Match the key points against a database of that obtained from training images
+		* Find the nearest neighbor i.e. a key point with minimum Euclidean distance
+			* Efficient Nearest Neighbor matching
+			* Looks at ratio of distance between best and 2nd best match
+			* If it is greater than 0.8, they are rejected
+			* It eliminaters around 90% of false matches while discards only 5% correct matches (as per the paper)
