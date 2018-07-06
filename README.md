@@ -129,7 +129,6 @@ I have used Open CV implementation of different algorithms for feature extractio
 
 
 
-
 1. **BF Matcher (Brute Force)**
 	* Brute-Force matcher is simple
 	* It takes the descriptor of one feature in first set and is matched with all other features in second set using some distance calculation
@@ -138,3 +137,9 @@ I have used Open CV implementation of different algorithms for feature extractio
 		* NORM_L1: Manhattan distance or Sum of absolute values
 		* NORM_L2: Euclidean distance or Square root of sum of squares
 		* NORM_HAMMING: Hamming distance or Number of positions at which corresponding symbols are different
+
+
+2. **FLANN based Matcher**
+	* FLANN stands for Fast Library for Approximate Nearest Neighbors
+	* It contains a collection of algorithms optimized for fast nearest neighbor search in large datasets and for high dimensional features
+	* It works more faster than BFMatcher for large datasets
