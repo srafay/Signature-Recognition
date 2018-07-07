@@ -1,16 +1,22 @@
-import numpy as np
 import cv2
-from matplotlib import pyplot as plt
 
-img1 = cv2.imread('5.jpg',0)          # queryImage
-img2 = cv2.imread('data/3.jpg',0) # trainImage
+class MyImage:
+    def __init__(self, img_name, optional=0):
+        self.img = cv2.imread(img_name, optional)
+        self.__name = img_name
+
+    def __str__(self):
+        return self.__name
+
+img1 = MyImage('5.jpg', 0)          # queryImage
+img2 = MyImage('data/5.jpg', 0) # trainImage
 
 # Initiate SIFT detector
 sift = cv2.xfeatures2d.SIFT_create()
 
 # find the keypoints and descriptors with SIFT
-kp1, des1 = sift.detectAndCompute(img1,None)
-kp2, des2 = sift.detectAndCompute(img2,None)
+kp1, des1 = sift.detectAndCompute(img1.img,None)
+kp2, des2 = sift.detectAndCompute(img2.img,None)
 
 # BFMatcher with default params
 bf = cv2.BFMatcher()
@@ -22,8 +28,5 @@ for m,n in matches:
     if m.distance < 0.60*n.distance:
         good.append([m])
 
-# cv2.drawMatchesKnn expects list of lists as matches.
-img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,good,None,flags=2)
-
-plt.figure(figsize=(10,20))
-plt.imshow(img3),plt.show()
+if len(good) >= 8:
+    print ("Signature of : " + str(img1))
